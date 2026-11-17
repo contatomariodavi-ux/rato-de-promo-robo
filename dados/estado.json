@@ -1,7 +1,46 @@
 {
- "postados": {},
- "cupons": {},
- "produtos": {},
- "dias": {},
- "telegram_offset": 219991962
+ "postados": {
+  "3223169": {
+   "titulo": "Creatina monohidratada soldiers nutrition 1200g",
+   "slug": "creatina-monohidratada-soldiers-nutrition-1200g-3223169",
+   "loja": "amazon",
+   "grupo": "suplementos",
+   "preco": 86.35,
+   "cupom": null,
+   "quando": "2026-11-17T20:04:28.770987-03:00",
+   "msg_grupo": null,
+   "foto": false,
+   "texto_tg": "🔥 <b>Creatina monohidratada soldiers nutrition 1200g</b>\n\n💰 <b>R$ 86,35</b>\n💪 R$ 0,22 por dose (3g)\n📉 Uma das doses mais baratas do mercado\n🛒 Amazon (vendido por Soldiers Nutrition)\n\n👉 COLE_SEU_LINK_AQUI\n\n<i>Preço e estoque podem mudar a qualquer momento.</i>",
+   "manual": true
+  }
+ },
+ "cupons": {
+  "72061": {
+   "id": "72061",
+   "titulo": "Cupom Mercado Livre: 30% OFF acima de R$ 1 (até R$ 500) em Esportes, Casa e mais",
+   "cupom": "MELIGARANTE30",
+   "loja_param": "mercado-livre",
+   "ate": "2026-12-16T23:59:59-0300",
+   "quando": "2026-11-17T20:04:28.770987-03:00",
+   "msg_grupo": null,
+   "foto": false,
+   "texto_tg": "🎟️ <b>CUPOM MERCADO LIVRE: 30% OFF</b>\n\nCupom Mercado Livre: 30% OFF acima de R$ 1 (até R$ 500) em Esportes, Casa e mais\n\nCódigo: <code>MELIGARANTE30</code>\n⏰ Válido até 16/12 às 23h59\n\n👉 COLE_SEU_LINK_AQUI"
+  }
+ },
+ "produtos": {
+  "amazon:creatina monohidratada soldiers nutrition 1200g": {
+   "preco": 86.35,
+   "quando": "2026-11-17T20:04:28.770987-03:00"
+  }
+ },
+ "dias": {
+  "2026-11-17": {
+   "total": 1,
+   "suplementos": 1,
+   "fitness": 0,
+   "shopee": 0,
+   "cupons": 1
+  }
+ },
+ "telegram_offset": 219991967
 }
