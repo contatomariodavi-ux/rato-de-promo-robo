@@ -1,0 +1,207 @@
+# =====================================================================
+#  CONFIGURAÇÃO DO ROBÔ DO RATO DE PROMO
+#  Dá pra editar tudo aqui pelo celular, no próprio GitHub (ícone do lápis).
+#  Token do Telegram, tag da Amazon e chave da Shopee NÃO ficam aqui:
+#  ficam em Settings > Secrets (veja o LEIAME.md).
+# =====================================================================
+
+# Lojas de onde o robô pega oferta (as que dão comissão pra gente).
+lojas:
+  amazon: Amazon
+  mercado-livre: Mercado Livre
+  shopee: Shopee
+
+# Link de afiliado "genérico" que você gera UMA vez no painel de cada loja
+# (ex.: a página de suplementos). Ele vai nos posts de CUPOM dessas lojas.
+# Deixa vazio se ainda não tiver.
+link_padrao:
+  mercado-livre: ""
+  shopee: ""
+
+# Divisão dos posts do dia (em %).
+mix:
+  suplementos: 70
+  fitness: 30
+
+# No máximo essa % dos posts do dia pode ser da Shopee (resto: ML e Amazon).
+shopee_max_pct: 30
+
+# Quantidade de posts.
+posts_por_rodada: 2
+posts_por_dia: 10
+
+# Horário em que o robô posta (horário de Brasília). Fora disso ele só confere esgotados.
+horario:
+  inicio: 7
+  fim: 23
+
+# Só considera ofertas postadas nas últimas X horas.
+ofertas_ate_horas: 12
+
+# Não repete o mesmo produto antes de X dias (a não ser que fique 5% mais barato).
+repetir_produto_depois_de_dias: 3
+
+# Por quantas horas o robô fica de olho num post pra avisar que esgotou.
+acompanhar_esgotado_horas: 72
+
+# ---------------------------------------------------------------------
+#  O QUE É OFERTA BOA
+# ---------------------------------------------------------------------
+
+# Tamanho da dose pra calcular o preço por dose.
+dose_gramas:
+  creatina: 3
+  whey: 30
+
+# Preço máximo por dose pra valer a pena (R$).
+# Creatina R$ 0,30/dose = R$ 100 o quilo. Whey R$ 4,50/dose = R$ 135 o pote de 900g.
+preco_max_por_dose:
+  creatina: 0.30
+  whey: 4.50
+
+creatina_aceita_capsulas: false
+
+# Se a oferta estiver mais de X vezes acima do menor preço já registrado, descarta (1.25 = 25% acima).
+maximo_acima_do_menor_preco: 1.25
+
+# Quando não tem histórico de preço, só passa com desconto de pelo menos X%.
+desconto_minimo_sem_historico: 40
+
+# Em marketplace, só vendedor verificado.
+exigir_vendedor_verificado: true
+
+# Nota mínima pra virar post (0 a ~120). Subir = mais exigente.
+nota_minima: 35
+
+# Onde procurar (subcategorias do Promobit).
+categorias:
+  suplementos:
+    - creatina
+    - whey-protein
+    - suplementos
+    - pre-treino
+  fitness:
+    - calcados-masculinos
+    - calcados
+    - roupa-masculina
+    - roupas-mulheres
+
+fitness:
+  # O título precisa ter pelo menos uma dessas palavras.
+  palavras_obrigatorias:
+    - tenis
+    - legging
+    - calca legging
+    - top fitness
+    - top esportivo
+    - regata
+    - dry fit
+    - camiseta esportiva
+    - camiseta de treino
+    - bermuda esportiva
+    - short esportivo
+    - shorts de corrida
+    - corrida
+    - academia
+    - treino
+    - running
+
+# Marcas aceitas. Fora dessa lista, o robô não posta.
+marcas_confiaveis:
+  suplementos:
+    - Growth
+    - Max Titanium
+    - Integralmedica
+    - Probiotica
+    - Dux
+    - Black Skull
+    - Soldiers Nutrition
+    - Darkness
+    - Atlhetica
+    - Optimum Nutrition
+    - Universal
+    - Dymatize
+    - Essential Nutrition
+    - Nutrata
+    - Vitafor
+    - New Millen
+    - Under Labz
+    - FTW
+    - Adaptogen
+    - Body Action
+    - Dark Lab
+    - Bold
+    - Ronnie Coleman
+  fitness:
+    - Nike
+    - Adidas
+    - Asics
+    - Mizuno
+    - Olympikus
+    - Fila
+    - New Balance
+    - Puma
+    - Under Armour
+    - Oakley
+    - Reebok
+    - Skechers
+    - Hoka
+    - On Running
+    - Track&Field
+    - Lupo
+    - Alto Giro
+    - Live!
+    - Umbro
+    - Kappa
+
+ignorar_palavras:
+  todos:
+    - infantil
+    - kids
+    - bebe
+    - usado
+    - recondicionado
+  suplementos:
+    - barra
+    - barrinha
+    - bebida
+    - snack
+    - wafer
+    - cookie proteico
+    - pronto para beber
+    - coqueteleira
+    - garrafa
+  fitness:
+    - chinelo
+    - sandalia
+    - sapatenis
+    - bota
+    - social
+
+# ---------------------------------------------------------------------
+#  CUPONS
+# ---------------------------------------------------------------------
+cupons:
+  por_rodada: 1
+  por_dia: 3
+  # Só cupom publicado nas últimas X horas.
+  ate_horas: 48
+  # O título/descrição do cupom precisa citar uma dessas palavras.
+  palavras:
+    - suplemento
+    - whey
+    - creatina
+    - saude
+    - esporte
+    - fitness
+    - academia
+    - tenis
+    - calcados
+    - moda
+    - todo o site
+    - site todo
+  # Cupom exclusivo de outro site não funciona pra gente.
+  ignorar:
+    - promobit
+    - exclusivo
+    - primeira compra no app
