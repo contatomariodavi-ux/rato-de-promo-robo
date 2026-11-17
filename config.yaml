@@ -15,7 +15,7 @@ lojas:
 # (ex.: a página de suplementos). Ele vai nos posts de CUPOM dessas lojas.
 # Deixa vazio se ainda não tiver.
 link_padrao:
-  mercado-livre: ""
+  mercado-livre: "https://meli.la/2sjdQAq"
   shopee: ""
 
 # Divisão dos posts do dia (em %).
