@@ -11,7 +11,8 @@
    "msg_grupo": null,
    "foto": false,
    "texto_tg": "🔥 <b>Creatina monohidratada soldiers nutrition 1200g</b>\n\n💰 <b>R$ 86,35</b>\n💪 R$ 0,22 por dose (3g)\n📉 Uma das doses mais baratas do mercado\n🛒 Amazon (vendido por Soldiers Nutrition)\n\n👉 COLE_SEU_LINK_AQUI\n\n<i>Preço e estoque podem mudar a qualquer momento.</i>",
-   "manual": true
+   "manual": true,
+   "checado": "2026-11-17T20:51:51.843407-03:00"
   }
  },
  "cupons": {
@@ -25,6 +26,17 @@
    "msg_grupo": null,
    "foto": false,
    "texto_tg": "🎟️ <b>CUPOM MERCADO LIVRE: 30% OFF</b>\n\nCupom Mercado Livre: 30% OFF acima de R$ 1 (até R$ 500) em Esportes, Casa e mais\n\nCódigo: <code>MELIGARANTE30</code>\n⏰ Válido até 16/12 às 23h59\n\n👉 COLE_SEU_LINK_AQUI"
+  },
+  "72062": {
+   "id": "72062",
+   "titulo": "Cupom Mercado Livre: 30% OFF acima de R$ 1 (até R$ 500) em Casa, Esportes e mais",
+   "cupom": "QUEROPROMO30",
+   "loja_param": "mercado-livre",
+   "ate": "2026-12-16T23:59:59-0300",
+   "quando": "2026-11-17T20:51:51.843407-03:00",
+   "msg_grupo": 4,
+   "foto": false,
+   "texto_tg": "🎟️ <b>CUPOM MERCADO LIVRE: 30% OFF</b>\n\nCupom Mercado Livre: 30% OFF acima de R$ 1 (até R$ 500) em Casa, Esportes e mais\n\nCódigo: <code>QUEROPROMO30</code>\n⏰ Válido até 16/12 às 23h59\n\n👉 https://meli.la/2sjdQAq"
   }
  },
  "produtos": {
@@ -39,7 +51,7 @@
    "suplementos": 1,
    "fitness": 0,
    "shopee": 0,
-   "cupons": 1
+   "cupons": 2
   }
  },
  "telegram_offset": 219991967
