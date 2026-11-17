@@ -9,7 +9,7 @@
 lojas:
   amazon: Amazon
   mercado-livre: Mercado Livre
-  shopee: Shopee
+  # shopee: Shopee   (desligada por enquanto; tira o # quando fizer o afiliado)
 
 # Link de afiliado "genérico" que você gera UMA vez no painel de cada loja
 # (ex.: a página de suplementos). Ele vai nos posts de CUPOM dessas lojas.
