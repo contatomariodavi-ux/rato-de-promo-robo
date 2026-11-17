@@ -14,9 +14,32 @@ def brl(v: float) -> str:
     return "R$ " + f"{v:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
 
-def _titulo_curto(t: str, n: int = 90) -> str:
+_MINUSCULAS = {"de", "da", "do", "das", "dos", "e", "em", "com", "para", "sem", "x", "a", "o"}
+
+
+def _gramas_em_kg(m: re.Match) -> str:
+    g = int(m.group(1))
+    if g >= 1000 and g % 100 == 0:
+        kg = f"{g / 1000:g}".replace(".", ",")
+        return f"{kg}kg"
+    return m.group(0)
+
+
+def _titulo_curto(t: str, n: int = 70) -> str:
+    """Arruma o título: Maiúsculas, 1200g vira 1,2kg, corta no tamanho."""
     t = " ".join((t or "").split())
-    return t if len(t) <= n else t[: n - 1].rstrip() + "…"
+    if t and not any(c.isupper() for c in t[1:]):  # veio tudo minúsculo
+        palavras = []
+        for i, p in enumerate(t.split()):
+            if any(ch.isdigit() for ch in p) or (i > 0 and p.lower() in _MINUSCULAS):
+                palavras.append(p.lower())
+            else:
+                palavras.append(p[:1].upper() + p[1:])
+        t = " ".join(palavras)
+    t = re.sub(r"\b(\d{4,5})\s?g\b", _gramas_em_kg, t, flags=re.I)
+    if len(t) <= n:
+        return t
+    return t[:n].rsplit(" ", 1)[0].rstrip(" -–,") + "…"
 
 
 def _linha_cupom(cupom: str | None) -> tuple[str, str] | None:
@@ -36,22 +59,16 @@ def montar_oferta(dados: dict) -> dict:
     antigo = dados.get("antigo")
     link = dados.get("link") or PLACEHOLDER
 
-    wa, tg = [], []
-    wa.append(f"🔥 *{titulo}*")
-    tg.append(f"🔥 <b>{html.escape(titulo)}</b>")
-    wa.append("")
-    tg.append("")
+    wa, tg = [f"🔥 *{titulo}*", ""], [f"🔥 <b>{html.escape(titulo)}</b>", ""]
     if antigo:
-        pct = round((1 - preco / antigo) * 100)
-        wa.append(f"~{brl(antigo)}~ ➜ *{brl(preco)}* (-{pct}%)")
-        tg.append(f"<s>{brl(antigo)}</s> ➜ <b>{brl(preco)}</b> (-{pct}%)")
+        wa.append(f"~{brl(antigo)}~ por *{brl(preco)}*")
+        tg.append(f"<s>{brl(antigo)}</s> por <b>{brl(preco)}</b>")
     else:
-        wa.append(f"💰 *{brl(preco)}*")
-        tg.append(f"💰 <b>{brl(preco)}</b>")
+        wa.append(f"Por *{brl(preco)}*")
+        tg.append(f"Por <b>{brl(preco)}</b>")
     if dados.get("preco_dose"):
-        d = f"💪 {brl(dados['preco_dose'])} por dose ({dados['dose_g']:g}g)"
-        wa.append(d)
-        tg.append(html.escape(d))
+        wa.append(f"💪 {brl(dados['preco_dose'])} a dose")
+        tg.append(f"💪 {brl(dados['preco_dose'])} a dose")
     cupom = _linha_cupom(dados.get("cupom"))
     if cupom:
         rot, val = cupom
@@ -64,13 +81,8 @@ def montar_oferta(dados: dict) -> dict:
     if dados.get("destaque"):
         wa.append(f"📉 {dados['destaque']}")
         tg.append(f"📉 {html.escape(dados['destaque'])}")
-    loja = dados["loja"]
-    if dados.get("vendedor"):
-        loja += f" (vendido por {dados['vendedor']})"
-    wa.append(f"🛒 {loja}")
-    tg.append(f"🛒 {html.escape(loja)}")
-    wa += ["", f"👉 {link}", "", f"_{RODAPE}_"]
-    tg += ["", f"👉 {html.escape(link)}", "", f"<i>{RODAPE}</i>"]
+    wa += ["", f"🛒 {dados['loja']}", f"👉 {link}"]
+    tg += ["", f"🛒 {html.escape(dados['loja'])}", f"👉 {html.escape(link)}"]
     return {"whatsapp": "\n".join(wa), "telegram": "\n".join(tg)}
 
 

@@ -120,8 +120,9 @@ def test_post_whatsapp_formatado():
         "loja": "Amazon", "vendedor": None, "link": "https://www.amazon.com.br/dp/B000000000?tag=rato-20",
     })
     wa = t["whatsapp"]
-    assert "~R$ 129,90~ ➜ *R$ 79,00* (-39%)" in wa
-    assert "💪 R$ 0,24 por dose (3g)" in wa
+    assert "~R$ 129,90~ por *R$ 79,00*" in wa
+    assert "💪 R$ 0,24 a dose" in wa
+    assert "Preço e estoque" not in wa
     assert "🏷️ Cupom: *RATO10*" in wa
     assert "<s>R$ 129,90</s>" in t["telegram"]
     assert posts.link_whatsapp(wa).startswith("https://wa.me/?text=%F0%9F%94%A5")
@@ -182,3 +183,13 @@ def test_aviso_de_esgotado(capsys):
     assert estado["cupons"]["9"]["esgotado"] is True
     saida = capsys.readouterr().out
     assert "editMessageCaption" in saida and "CUPOM ESGOTADO" in saida
+
+
+def test_titulo_arrumado():
+    t = posts.montar_oferta({"titulo": "creatina monohidratada soldiers nutrition 1200g", "preco": 86.35,
+                             "loja": "Amazon", "link": None})
+    assert t["whatsapp"].startswith("🔥 *Creatina Monohidratada Soldiers Nutrition 1,2kg*")
+    assert t["whatsapp"].endswith("👉 COLE_SEU_LINK_AQUI")
+    t2 = posts.montar_oferta({"titulo": "Whey Protein Gold Standard 100% 2,27kg - Optimum Nutrition", "preco": 300,
+                              "loja": "Amazon", "link": "x"})
+    assert "*Whey Protein Gold Standard 100% 2,27kg - Optimum Nutrition*" in t2["whatsapp"]

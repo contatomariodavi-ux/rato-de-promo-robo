@@ -95,8 +95,8 @@ def avisar_esgotado(item: dict, tg: Telegram, admin, grupo_tg) -> None:
     if admin:
         tg.mensagem(
             admin,
-            "⚠️ Esgotou! Manda o aviso no WhatsApp:\n\n" + textos["telegram"],
-            Telegram.botoes([("📲 Mandar no WhatsApp", posts.link_whatsapp(textos["whatsapp"]))]),
+            textos["telegram"],
+            Telegram.botoes([("Mandar no WhatsApp", posts.link_whatsapp(textos["whatsapp"]))]),
             previa=False,
         )
     item["esgotado"] = True
@@ -253,16 +253,15 @@ def postar_oferta(item, pb: Promobit, tg: Telegram, estado: dict, cfg: dict, seg
         msg_grupo = (r or {}).get("message_id")
 
     whats = posts.link_whatsapp(textos["whatsapp"])
-    if link.manual:
-        cab = (f"🟡 <b>{loja_nome}</b>: abre o produto, gera teu link de afiliado (Compartilhar) e copia. "
-               f"Depois toca em Mandar no WhatsApp e troca o {posts.PLACEHOLDER} pelo teu link.")
-        botoes = Telegram.botoes([(f"🛒 Abrir no {loja_nome}", link.abrir)] if link.abrir else [],
-                                 [("📲 Mandar no WhatsApp", whats)])
+    if link.manual and link.abrir:
+        botoes = Telegram.botoes([(f"1. Pegar meu link no {loja_nome}", link.abrir)],
+                                 [("2. Mandar no WhatsApp", whats)])
     else:
-        cab = "🟢 Já postei no Telegram. Toca pra mandar no WhatsApp:" if msg_grupo else "🟢 Pronto pro WhatsApp:"
-        botoes = Telegram.botoes([("📲 Mandar no WhatsApp", whats)])
+        botoes = Telegram.botoes([("Mandar no WhatsApp", whats)])
     if admin:
-        tg.mensagem(admin, f"{cab}\n\n{textos['telegram']}", botoes, previa=False)
+        r = tg.foto(admin, imagem, textos["telegram"], botoes) if imagem else None
+        if r is None:
+            tg.mensagem(admin, textos["telegram"], botoes, previa=False)
 
     estado["postados"][str(o["offerId"])] = {
         "titulo": o["offerTitle"], "slug": o["offerSlug"], "loja": loja, "grupo": av.grupo,
@@ -331,10 +330,8 @@ def postar_cupons(pb: Promobit, tg: Telegram, estado: dict, cfg: dict, segredos:
         if grupo_tg and link:
             msg_grupo = (tg.mensagem(grupo_tg, textos["telegram"], previa=False) or {}).get("message_id")
         if admin:
-            cab = "🎟️ Cupom novo" + (" (já postei no Telegram)" if msg_grupo else
-                                      f" — troca o {posts.PLACEHOLDER} pelo teu link do {loja_nome}")
-            tg.mensagem(admin, f"{cab}:\n\n{textos['telegram']}",
-                        Telegram.botoes([("📲 Mandar no WhatsApp", posts.link_whatsapp(textos["whatsapp"]))]),
+            tg.mensagem(admin, textos["telegram"],
+                        Telegram.botoes([("Mandar no WhatsApp", posts.link_whatsapp(textos["whatsapp"]))]),
                         previa=False)
         estado["cupons"][str(c["couponId"])] = {
             "id": str(c["couponId"]), "titulo": c.get("couponTitle") or "", "cupom": c["couponCode"].strip(),
