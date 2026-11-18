@@ -104,7 +104,12 @@ def montar_oferta(dados: dict) -> dict:
     cupom = _linha_cupom(dados.get("cupom"))
     if cupom:
         rot, val = cupom
-        wa.append(f"🏷️ Usa o cupom *{val}* no carrinho" if rot else f"🏷️ {val}")
+        if not rot:
+            wa.append(f"🏷️ {val}")
+        elif dados.get("cupom_teste"):
+            wa.append(f"🏷️ Testa o cupom *{val}* no carrinho, que pode baixar mais")
+        else:
+            wa.append(f"🏷️ Usa o cupom *{val}* no carrinho")
     wa += ["", f"🛒 {dados['loja']}", f"👉 {link}"]
     if dados.get("anuncio"):
         wa.append("_Anúncio_")

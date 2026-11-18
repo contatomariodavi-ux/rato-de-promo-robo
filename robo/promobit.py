@@ -106,6 +106,12 @@ class Promobit:
 
     # ------------------------------------------------------------ cupons
     def cupons(self, loja_param: str) -> list[dict]:
+        cache = self.__dict__.setdefault("_cache_cupons", {})
+        if loja_param not in cache:
+            cache[loja_param] = self._cupons(loja_param)
+        return cache[loja_param]
+
+    def _cupons(self, loja_param: str) -> list[dict]:
         _, pp = self._page_props(f"{BASE}/cupons/loja/{loja_param}/")
         if not pp:
             return []

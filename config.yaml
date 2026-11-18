@@ -239,6 +239,14 @@ marcar_anuncio: true
 #     ate: 2026-11-30
 cupons_afiliado: []
 
+# Cupom geral do Mercado Livre que estiver valendo (achado pelo robô), colado nas ofertas
+# do ML que vierem sem cupom, com "Testa o cupom X no carrinho".
+# Grupo: palavras que o cupom precisa citar. Apaga o bloco pra desligar.
+cupom_ml_automatico:
+  suplementos: [saude, suplemento]
+  fitness: [esporte, moda]
+  academia: [esporte]
+
 # ---------------------------------------------------------------------
 #  TERMÔMETRO: uma vez por dia o Rato diz se creatina e whey estão baratos
 #  ou se é pra segurar a carteira ("não compra agora que tá caro").

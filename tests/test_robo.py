@@ -247,3 +247,27 @@ def test_cupom_afiliado_e_anuncio():
     t = posts.montar_oferta({"titulo": "Creatina 1kg Dux", "preco": 80, "cupom": "MLSAUDE", "loja": "Mercado Livre",
                              "link": None, "anuncio": True})
     assert t["whatsapp"].endswith("_Anúncio_") and t["telegram"].endswith("<i>Anúncio</i>")
+
+
+def test_cupom_ml_automatico_por_grupo():
+    from datetime import datetime
+    from robo.main import TZ, cupons_ml_por_grupo
+
+    class PBFalso:
+        def cupons(self, loja):
+            return [
+                {"couponCode": "POUPAAGORA25", "couponStatusName": "APPROVED", "couponDiscountShort": "25% OFF",
+                 "couponTitle": "Cupom Mercado Livre: 25% OFF em Casa, Saúde e mais", "couponUntil": "2026-12-17T23:59:59-0300"},
+                {"couponCode": "MELIVIP25", "couponStatusName": "APPROVED", "couponDiscountShort": "25% OFF",
+                 "couponTitle": "25% OFF em Casa, Esportes e mais", "couponUntil": None},
+                {"couponCode": "MELIPROMOBIT", "couponStatusName": "APPROVED", "couponDiscountShort": "40% OFF",
+                 "couponTitle": "Cupom exclusivo Saúde", "couponUntil": None},
+                {"couponCode": "VENCIDO", "couponStatusName": "APPROVED", "couponDiscountShort": "50% OFF",
+                 "couponTitle": "50% em Saúde", "couponUntil": "2026-01-01T00:00:00-0300"},
+            ]
+
+    mapa = cupons_ml_por_grupo(PBFalso(), CFG, datetime(2026, 11, 18, 10, tzinfo=TZ))
+    assert mapa == {"suplementos": "POUPAAGORA25", "fitness": "MELIVIP25", "academia": "MELIVIP25"}
+    t = posts.montar_oferta({"titulo": "Creatina 1kg Dux", "preco": 80, "cupom": "POUPAAGORA25", "cupom_teste": True,
+                             "loja": "Mercado Livre", "link": None})
+    assert "Testa o cupom *POUPAAGORA25* no carrinho" in t["whatsapp"]

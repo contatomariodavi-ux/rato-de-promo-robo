@@ -257,13 +257,19 @@ def postar_oferta(item, pb: Promobit, tg: Telegram, estado: dict, cfg: dict, seg
     link = afiliados.gerar(loja, url_saida, o["offerTitle"], segredos)
 
     vendedor = ((det or {}).get("storeMarketplace") or {}).get("storeMarketplaceName")
+    cupom = o.get("offerCoupon") or cupom_afiliado(o, cfg)
+    cupom_teste = False
+    if not cupom and loja == "mercado-livre":
+        cupom = cupons_ml_por_grupo(pb, cfg, agora).get(av.grupo)
+        cupom_teste = bool(cupom)
     textos = posts.montar_oferta({
         "titulo": o["offerTitle"],
         "preco": float(o["offerPrice"]),
         "antigo": analise.preco_antigo_confiavel(o, det),
         "preco_dose": av.preco_dose,
         "dose_g": av.dose_g,
-        "cupom": o.get("offerCoupon") or cupom_afiliado(o, cfg),
+        "cupom": cupom,
+        "cupom_teste": cupom_teste,
         "anuncio": cfg.get("marcar_anuncio", True),
         "destaque": av.destaque,
         "loja": loja_nome,
@@ -320,6 +326,34 @@ def cupom_afiliado(oferta: dict, cfg: dict) -> str | None:
         if not palavras or any(analise.normalizar(p) in t for p in palavras):
             return str(c["codigo"]).strip()
     return None
+
+
+def cupons_ml_por_grupo(pb: Promobit, cfg: dict, agora: datetime) -> dict:
+    """Cupom geral do ML que está valendo (tipo os de Saúde e Esportes) pra cada grupo de oferta."""
+    regras = cfg.get("cupom_ml_automatico") or {}
+    if not regras or "mercado-livre" not in cfg["lojas"]:
+        return {}
+    ignorar = [analise.normalizar(x) for x in cfg["cupons"]["ignorar"]]
+
+    def valor(c):
+        achou = re.search(r"\d+(?:[.,]\d+)?", str(c.get("couponDiscountShort") or ""))
+        return float(achou.group().replace(",", ".")) if achou else 0.0
+
+    mapa: dict[str, str] = {}
+    for c in sorted(pb.cupons("mercado-livre"), key=valor, reverse=True):
+        codigo = (c.get("couponCode") or "").strip()
+        if c.get("couponStatusName") != "APPROVED" or not codigo or " " in codigo:
+            continue
+        texto = analise.normalizar(" ".join(str(c.get(k) or "") for k in ("couponTitle", "couponInstructions")))
+        if any(x in texto or x in codigo.lower() for x in ignorar):
+            continue
+        ate = posts.ler_data(c.get("couponUntil"))
+        if ate and ate < agora:
+            continue
+        for grupo, palavras in regras.items():
+            if grupo not in mapa and any(analise.normalizar(p) in texto for p in palavras):
+                mapa[grupo] = codigo
+    return mapa
 
 
 # ------------------------------------------------------------------ cupons
