@@ -36,7 +36,7 @@ horario:
   fim: 23
 
 # Só considera ofertas postadas nas últimas X horas.
-ofertas_ate_horas: 12
+ofertas_ate_horas: 24
 
 # Não repete o mesmo produto antes de X dias (a não ser que fique 5% mais barato).
 repetir_produto_depois_de_dias: 3
