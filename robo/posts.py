@@ -52,38 +52,62 @@ def _linha_cupom(cupom: str | None) -> tuple[str, str] | None:
     return ("", cupom)
 
 
+# ---- voz do Rato -------------------------------------------------------
+ABERTURAS = [
+    "Farejei essa e corri pra cá!",
+    "Olha o que eu achei escondido {na_loja}!",
+    "Roí o preço dessa até o osso!",
+    "Essa aqui o Rato não deixa passar!",
+    "Saí do buraco só pra te mostrar essa!",
+    "Cheiro de oferta boa no ar!",
+]
+DESTAQUES = {
+    "Menor preço já registrado": "Menor preço que eu já farejei",
+    "Pertinho do menor preço já registrado": "Quase no menor preço que eu já vi",
+    "Uma das doses mais baratas do mercado": "Dose baratinha, do jeito que rato gosta",
+}
+
+
+def _na(loja: str) -> str:
+    """'na Amazon', 'no Mercado Livre', 'na Shopee'."""
+    return ("no " if loja.lower().startswith("mercado") else "na ") + loja
+
+
+def _sorteio(chave: str, opcoes: list[str]) -> str:
+    """Escolhe uma frase pelo título, pra variar entre posts sem mudar o mesmo post."""
+    return opcoes[sum(map(ord, chave)) % len(opcoes)]
+
+
+def _wa_para_html(texto: str) -> str:
+    """Converte a marcação do WhatsApp (*negrito*, ~riscado~, _itálico_) pro HTML do Telegram."""
+    t = html.escape(texto)
+    t = re.sub(r"(?<![\w*])\*([^*\n]+)\*(?![\w*])", r"<b>\1</b>", t)
+    t = re.sub(r"(?<![\w~])~([^~\n]+)~(?![\w~])", r"<s>\1</s>", t)
+    t = re.sub(r"(?<![\w_])_([^_\n]+)_(?![\w_])", r"<i>\1</i>", t)
+    return t
+
+
 def montar_oferta(dados: dict) -> dict:
-    """dados: titulo, preco, antigo, preco_dose, dose_g, cupom, destaque, loja, vendedor, link"""
+    """dados: titulo, preco, antigo, preco_dose, cupom, destaque, loja, link"""
     titulo = _titulo_curto(dados["titulo"])
     preco = dados["preco"]
     antigo = dados.get("antigo")
     link = dados.get("link") or PLACEHOLDER
+    abertura = _sorteio(titulo, ABERTURAS).format(na_loja=_na(dados["loja"]))
 
-    wa, tg = [f"🔥 *{titulo}*", ""], [f"🔥 <b>{html.escape(titulo)}</b>", ""]
-    if antigo:
-        wa.append(f"~{brl(antigo)}~ por *{brl(preco)}*")
-        tg.append(f"<s>{brl(antigo)}</s> por <b>{brl(preco)}</b>")
-    else:
-        wa.append(f"Por *{brl(preco)}*")
-        tg.append(f"Por <b>{brl(preco)}</b>")
+    wa = [f"🐀 *{abertura}*", "", f"*{titulo}*"]
+    wa.append(f"~{brl(antigo)}~ por *{brl(preco)}*" if antigo else f"Por *{brl(preco)}*")
     if dados.get("preco_dose"):
         wa.append(f"💪 {brl(dados['preco_dose'])} a dose")
-        tg.append(f"💪 {brl(dados['preco_dose'])} a dose")
+    if dados.get("destaque"):
+        wa.append(f"📉 {DESTAQUES.get(dados['destaque'], dados['destaque'])}")
     cupom = _linha_cupom(dados.get("cupom"))
     if cupom:
         rot, val = cupom
-        if rot:
-            wa.append(f"🏷️ {rot}*{val}*")
-            tg.append(f"🏷️ {rot}<code>{html.escape(val)}</code>")
-        else:
-            wa.append(f"🏷️ {val}")
-            tg.append(f"🏷️ {html.escape(val)}")
-    if dados.get("destaque"):
-        wa.append(f"📉 {dados['destaque']}")
-        tg.append(f"📉 {html.escape(dados['destaque'])}")
+        wa.append(f"🏷️ Usa o cupom *{val}* no carrinho" if rot else f"🏷️ {val}")
     wa += ["", f"🛒 {dados['loja']}", f"👉 {link}"]
-    tg += ["", f"🛒 {html.escape(dados['loja'])}", f"👉 {html.escape(link)}"]
-    return {"whatsapp": "\n".join(wa), "telegram": "\n".join(tg)}
+    texto = "\n".join(wa)
+    return {"whatsapp": texto, "telegram": _wa_para_html(texto)}
 
 
 def ler_data(texto: str | None) -> datetime | None:
@@ -110,38 +134,30 @@ def montar_cupom(dados: dict) -> dict:
     link = dados.get("link") or PLACEHOLDER
     titulo = _titulo_curto(dados["titulo"], 120)
     validade = _validade(dados.get("ate"))
-    wa = [f"🎟️ *CUPOM {dados['loja'].upper()}: {dados['desconto']}*", "", titulo, "", f"Código: *{dados['codigo']}*"]
-    tg = [
-        f"🎟️ <b>CUPOM {html.escape(dados['loja'].upper())}: {html.escape(dados['desconto'])}</b>",
-        "",
-        html.escape(titulo),
-        "",
-        f"Código: <code>{html.escape(dados['codigo'])}</code>",
-    ]
+    desconto = " ".join(str(dados["desconto"]).split())
+    titulo = re.sub(r"^cupom\s+[^:]{0,40}:\s*", "", titulo, flags=re.I)
+    if desconto and titulo.lower().startswith(desconto.lower()):
+        linha = f"*{titulo[:len(desconto)]}*{titulo[len(desconto):]}"
+    else:
+        linha = f"*{desconto}*: {titulo}"
+    wa = [f"🐀 *Achei cupom {_na(dados['loja'])}!*", "", linha, f"🏷️ Código: *{dados['codigo']}*"]
     if validade:
-        wa.append(f"⏰ Válido até {validade}")
-        tg.append(f"⏰ Válido até {validade}")
+        wa.append(f"⏰ Vale até {validade}")
     wa += ["", f"👉 {link}"]
-    tg += ["", f"👉 {html.escape(link)}"]
-    return {"whatsapp": "\n".join(wa), "telegram": "\n".join(tg)}
+    texto = "\n".join(wa)
+    return {"whatsapp": texto, "telegram": _wa_para_html(texto)}
 
 
 def montar_esgotado(titulo: str, cupom: str | None) -> dict:
     titulo = _titulo_curto(titulo)
     if cupom and len(cupom.split()) == 1:
-        topo = "❌ *CUPOM ESGOTADO*"
-        corpo = f"O cupom *{cupom}* acabou. Quem pegou, pegou! Fica de olho que o Rato volta com mais 🐀"
+        topo = "❌ *CUPOM ESGOTADO!*"
+        corpo = f"O cupom *{cupom}* já era. Quem pegou, pegou! Fica de olho que o Rato volta com mais 🐀"
     else:
-        topo = "❌ *OFERTA ESGOTADA*"
-        corpo = "Acabou o estoque ou o preço voltou. Fica de olho que o Rato volta com mais 🐀"
-    wa = f"{topo}\n\n{titulo}\n{corpo}"
-    tg = f"{_wa_para_html(topo)}\n\n{html.escape(titulo)}\n{_wa_para_html(corpo)}"
-    return {"whatsapp": wa, "telegram": tg}
-
-
-def _wa_para_html(texto: str) -> str:
-    """Converte *negrito* do WhatsApp pra <b>negrito</b> do Telegram."""
-    return re.sub(r"\*([^*\n]+)\*", r"<b>\1</b>", html.escape(texto))
+        topo = "❌ *OFERTA ESGOTADA!*"
+        corpo = "Acabou o estoque ou o preço voltou. Quem pegou, pegou! Fica de olho que o Rato volta com mais 🐀"
+    texto = f"{topo}\n\n{titulo}\n{corpo}"
+    return {"whatsapp": texto, "telegram": _wa_para_html(texto)}
 
 
 def link_whatsapp(texto: str, limite: int = 2000) -> str:

@@ -123,14 +123,15 @@ def test_post_whatsapp_formatado():
     assert "~R$ 129,90~ por *R$ 79,00*" in wa
     assert "💪 R$ 0,24 a dose" in wa
     assert "Preço e estoque" not in wa
-    assert "🏷️ Cupom: *RATO10*" in wa
+    assert "🏷️ Usa o cupom *RATO10* no carrinho" in wa
+    assert wa.startswith("🐀 *")
     assert "<s>R$ 129,90</s>" in t["telegram"]
-    assert posts.link_whatsapp(wa).startswith("https://wa.me/?text=%F0%9F%94%A5")
+    assert posts.link_whatsapp(wa).startswith("https://wa.me/?text=%F0%9F%90%80")
 
 
 def test_esgotado():
     t = posts.montar_esgotado("Creatina 1kg", "RATO10")
-    assert t["whatsapp"].startswith("❌ *CUPOM ESGOTADO*")
+    assert t["whatsapp"].startswith("❌ *CUPOM ESGOTADO!*")
     assert "<b>RATO10</b>" in t["telegram"]
     t2 = posts.montar_esgotado("Creatina 1kg", None)
     assert "OFERTA ESGOTADA" in t2["whatsapp"]
@@ -188,7 +189,7 @@ def test_aviso_de_esgotado(capsys):
 def test_titulo_arrumado():
     t = posts.montar_oferta({"titulo": "creatina monohidratada soldiers nutrition 1200g", "preco": 86.35,
                              "loja": "Amazon", "link": None})
-    assert t["whatsapp"].startswith("🔥 *Creatina Monohidratada Soldiers Nutrition 1,2kg*")
+    assert "\n*Creatina Monohidratada Soldiers Nutrition 1,2kg*\n" in t["whatsapp"]
     assert t["whatsapp"].endswith("👉 COLE_SEU_LINK_AQUI")
     t2 = posts.montar_oferta({"titulo": "Whey Protein Gold Standard 100% 2,27kg - Optimum Nutrition", "preco": 300,
                               "loja": "Amazon", "link": "x"})
