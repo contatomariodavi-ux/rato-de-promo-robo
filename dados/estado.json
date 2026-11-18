@@ -12,7 +12,7 @@
    "foto": false,
    "texto_tg": "🔥 <b>Creatina monohidratada soldiers nutrition 1200g</b>\n\n💰 <b>R$ 86,35</b>\n💪 R$ 0,22 por dose (3g)\n📉 Uma das doses mais baratas do mercado\n🛒 Amazon (vendido por Soldiers Nutrition)\n\n👉 COLE_SEU_LINK_AQUI\n\n<i>Preço e estoque podem mudar a qualquer momento.</i>",
    "manual": true,
-   "checado": "2026-11-18T07:56:00.828997-03:00"
+   "checado": "2026-11-18T08:54:10.952813-03:00"
   },
   "3221595": {
    "titulo": "Whey Isolate Protein Fuse 900g Dark Lab",
@@ -25,7 +25,8 @@
    "msg_grupo": null,
    "foto": false,
    "texto_tg": "🐀 <b>Olha o que eu achei escondido no Mercado Livre!</b>\n\n<b>Whey Isolate Protein Fuse 900g Dark Lab</b>\nPor <b>R$ 78,90</b>\n💪 R$ 2,63 a dose\n📉 Dose baratinha, do jeito que rato gosta\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
-   "manual": true
+   "manual": true,
+   "checado": "2026-11-18T08:54:10.952813-03:00"
   }
  },
  "cupons": {
@@ -72,6 +73,17 @@
    "msg_grupo": 7,
    "foto": false,
    "texto_tg": "🐀 <b>Achei cupom no Mercado Livre!</b>\n\n<b>25% OFF</b> em Casa, Saúde e mais\n🏷️ Código: <b>POUPAAGORA25</b>\n⏰ Vale até 17/12 às 23h59\n\n👉 https://meli.la/2sjdQAq"
+  },
+  "72060": {
+   "id": "72060",
+   "titulo": "Cupom Mercado Livre: 25% OFF acima de R$ 1 (até R$ 500) em Casa, Esportes e mais",
+   "cupom": "MELHORESPROMOS25",
+   "loja_param": "mercado-livre",
+   "ate": "2026-12-16T23:59:59-0300",
+   "quando": "2026-11-18T08:54:10.952813-03:00",
+   "msg_grupo": 8,
+   "foto": false,
+   "texto_tg": "🐀 <b>Achei cupom no Mercado Livre!</b>\n\n<b>25% OFF</b> acima de R$ 1 (até R$ 500) em Casa, Esportes e mais\n🏷️ Código: <b>MELHORESPROMOS25</b>\n⏰ Vale até 16/12 às 23h59\n\n👉 https://meli.la/2sjdQAq"
   }
  },
  "produtos": {
@@ -95,7 +107,7 @@
   "2026-11-18": {
    "total": 1,
    "shopee": 0,
-   "cupons": 1,
+   "cupons": 2,
    "suplementos": 1,
    "fitness": 0,
    "academia": 0
