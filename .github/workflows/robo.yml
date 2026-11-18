@@ -2,11 +2,9 @@ name: Robô Rato de Promo
 
 on:
   schedule:
-    # Horário de Brasília = UTC-3.
-    # Das 8h às 18h: a cada 20 minutos.
-    - cron: "7,27,47 11-20 * * *"
-    # Das 18h às 8h: a cada 30 minutos (de madrugada ele só confere esgotados).
-    - cron: "17,47 21-23,0-10 * * *"
+    # A cada 15 minutos, o dia todo. Os posts saem das 7h às 23h (config.yaml › horario);
+    # de madrugada ele confere esgotados e segura as ofertas pra soltar a partir das 7h.
+    - cron: "2,17,32,47 * * * *"
   workflow_dispatch:
     inputs:
       teste:
