@@ -12,7 +12,20 @@
    "foto": false,
    "texto_tg": "🔥 <b>Creatina monohidratada soldiers nutrition 1200g</b>\n\n💰 <b>R$ 86,35</b>\n💪 R$ 0,22 por dose (3g)\n📉 Uma das doses mais baratas do mercado\n🛒 Amazon (vendido por Soldiers Nutrition)\n\n👉 COLE_SEU_LINK_AQUI\n\n<i>Preço e estoque podem mudar a qualquer momento.</i>",
    "manual": true,
-   "checado": "2026-11-18T06:53:33.754128-03:00"
+   "checado": "2026-11-18T07:56:00.828997-03:00"
+  },
+  "3221595": {
+   "titulo": "Whey Isolate Protein Fuse 900g Dark Lab",
+   "slug": "whey-isolate-protein-fuse-900g-dark-lab-3221595",
+   "loja": "mercado-livre",
+   "grupo": "suplementos",
+   "preco": 78.9,
+   "cupom": null,
+   "quando": "2026-11-18T07:56:00.828997-03:00",
+   "msg_grupo": null,
+   "foto": false,
+   "texto_tg": "🐀 <b>Olha o que eu achei escondido no Mercado Livre!</b>\n\n<b>Whey Isolate Protein Fuse 900g Dark Lab</b>\nPor <b>R$ 78,90</b>\n💪 R$ 2,63 a dose\n📉 Dose baratinha, do jeito que rato gosta\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
+   "manual": true
   }
  },
  "cupons": {
@@ -48,12 +61,27 @@
    "msg_grupo": 5,
    "foto": false,
    "texto_tg": "🐀 <b>Achei cupom no Mercado Livre!</b>\n\n<b>25% OFF</b> em Casa, Esportes e mais com cupom Mercado Livre\n🏷️ Código: <b>MELIVIP25</b>\n⏰ Vale até 17/12 às 23h59\n\n👉 https://meli.la/2sjdQAq"
+  },
+  "72115": {
+   "id": "72115",
+   "titulo": "Cupom Mercado Livre: 25% OFF em Casa, Saúde e mais",
+   "cupom": "POUPAAGORA25",
+   "loja_param": "mercado-livre",
+   "ate": "2026-12-17T23:59:59-0300",
+   "quando": "2026-11-18T07:56:00.828997-03:00",
+   "msg_grupo": 7,
+   "foto": false,
+   "texto_tg": "🐀 <b>Achei cupom no Mercado Livre!</b>\n\n<b>25% OFF</b> em Casa, Saúde e mais\n🏷️ Código: <b>POUPAAGORA25</b>\n⏰ Vale até 17/12 às 23h59\n\n👉 https://meli.la/2sjdQAq"
   }
  },
  "produtos": {
   "amazon:creatina monohidratada soldiers nutrition 1200g": {
    "preco": 86.35,
    "quando": "2026-11-17T20:04:28.770987-03:00"
+  },
+  "mercado-livre:whey isolate protein fuse 900g dark lab": {
+   "preco": 78.9,
+   "quando": "2026-11-18T07:56:00.828997-03:00"
   }
  },
  "dias": {
@@ -63,6 +91,14 @@
    "fitness": 0,
    "shopee": 0,
    "cupons": 3
+  },
+  "2026-11-18": {
+   "total": 1,
+   "shopee": 0,
+   "cupons": 1,
+   "suplementos": 1,
+   "fitness": 0,
+   "academia": 0
   }
  },
  "telegram_offset": 219991967,
@@ -80,7 +116,22 @@
     "preco": 76.0,
     "loja": "Mercado Livre"
    }
+  },
+  "2026-11-18": {
+   "creatina": {
+    "dose": 0.2159,
+    "titulo": "Creatina monohidratada soldiers nutrition 1200g",
+    "preco": 86.35,
+    "loja": "Amazon"
+   },
+   "whey": {
+    "dose": 2.34,
+    "titulo": "Whey Pro Max Titanium 1kg Chocolate",
+    "preco": 78.0,
+    "loja": "Mercado Livre"
+   }
   }
  },
- "termometro_postado": "2026-11-17"
+ "termometro_postado": "2026-11-17",
+ "ultimo_post": "2026-11-18T07:56:00.828997-03:00"
 }
