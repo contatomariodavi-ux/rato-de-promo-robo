@@ -12,7 +12,7 @@
    "foto": false,
    "texto_tg": "🔥 <b>Creatina monohidratada soldiers nutrition 1200g</b>\n\n💰 <b>R$ 86,35</b>\n💪 R$ 0,22 por dose (3g)\n📉 Uma das doses mais baratas do mercado\n🛒 Amazon (vendido por Soldiers Nutrition)\n\n👉 COLE_SEU_LINK_AQUI\n\n<i>Preço e estoque podem mudar a qualquer momento.</i>",
    "manual": true,
-   "checado": "2026-11-17T20:51:51.843407-03:00"
+   "checado": "2026-11-17T22:03:09.364644-03:00"
   }
  },
  "cupons": {
@@ -37,6 +37,17 @@
    "msg_grupo": 4,
    "foto": false,
    "texto_tg": "🎟️ <b>CUPOM MERCADO LIVRE: 30% OFF</b>\n\nCupom Mercado Livre: 30% OFF acima de R$ 1 (até R$ 500) em Casa, Esportes e mais\n\nCódigo: <code>QUEROPROMO30</code>\n⏰ Válido até 16/12 às 23h59\n\n👉 https://meli.la/2sjdQAq"
+  },
+  "72116": {
+   "id": "72116",
+   "titulo": "25% OFF em Casa, Esportes e mais com cupom Mercado Livre",
+   "cupom": "MELIVIP25",
+   "loja_param": "mercado-livre",
+   "ate": "2026-12-17T23:59:59-0300",
+   "quando": "2026-11-17T22:03:09.364644-03:00",
+   "msg_grupo": 5,
+   "foto": false,
+   "texto_tg": "🐀 <b>Achei cupom no Mercado Livre!</b>\n\n<b>25% OFF</b> em Casa, Esportes e mais com cupom Mercado Livre\n🏷️ Código: <b>MELIVIP25</b>\n⏰ Vale até 17/12 às 23h59\n\n👉 https://meli.la/2sjdQAq"
   }
  },
  "produtos": {
@@ -51,8 +62,25 @@
    "suplementos": 1,
    "fitness": 0,
    "shopee": 0,
-   "cupons": 2
+   "cupons": 3
   }
  },
- "telegram_offset": 219991967
+ "telegram_offset": 219991967,
+ "termometro": {
+  "2026-11-17": {
+   "creatina": {
+    "dose": 0.2159,
+    "titulo": "Creatina monohidratada soldiers nutrition 1200g",
+    "preco": 86.35,
+    "loja": "Amazon"
+   },
+   "whey": {
+    "dose": 5.0667,
+    "titulo": "100% Whey Concentrado 450g Growth Supplements",
+    "preco": 76.0,
+    "loja": "Mercado Livre"
+   }
+  }
+ },
+ "termometro_postado": "2026-11-17"
 }
