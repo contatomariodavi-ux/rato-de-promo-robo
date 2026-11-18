@@ -103,7 +103,7 @@ def triagem(oferta: dict, grupo: str, cfg: dict) -> Avaliacao:
     titulo = oferta.get("offerTitle") or ""
     t = normalizar(titulo)
     preco = float(oferta.get("offerPrice") or 0)
-    tipo = tipo_suplemento(titulo) if grupo == "suplementos" else "fitness"
+    tipo = tipo_suplemento(titulo) if grupo == "suplementos" else grupo
     av = Avaliacao(grupo=grupo, tipo=tipo)
 
     if preco <= 0:
@@ -113,13 +113,14 @@ def triagem(oferta: dict, grupo: str, cfg: dict) -> Avaliacao:
         if re.search(rf"(?<![a-z]){re.escape(normalizar(palavra))}", t):
             return _rejeita(av, f"palavra ignorada: {palavra}")
 
-    if grupo == "fitness":
-        palavras = cfg["fitness"]["palavras_obrigatorias"]
-        if not any(normalizar(p) in t for p in palavras):
-            return _rejeita(av, "não é roupa fitness nem tênis")
+    if grupo != "suplementos":
+        palavras = (cfg.get(grupo) or {}).get("palavras_obrigatorias") or []
+        if palavras and not any(normalizar(p) in t for p in palavras):
+            return _rejeita(av, f"não é produto de {grupo}")
 
-    av.marca = achar_marca(titulo, cfg["marcas_confiaveis"][grupo])
-    if not av.marca:
+    marcas = (cfg.get("marcas_confiaveis") or {}).get(grupo) or []
+    av.marca = achar_marca(titulo, marcas) if marcas else None
+    if marcas and not av.marca:
         return _rejeita(av, "marca fora da lista de confiáveis")
 
     if tipo in ("creatina", "whey"):

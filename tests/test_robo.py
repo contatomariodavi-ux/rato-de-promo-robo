@@ -103,10 +103,15 @@ def test_mix_70_30_e_limite_shopee():
     for i in range(10):
         aprovados.append((_av("suplementos", 90 - i), oferta(f"sup {i}", 10, oid=i), {}))
         aprovados.append((_av("fitness", 95 - i), oferta(f"fit {i}", 10, oid=100 + i), {}))
-    dia = {"total": 0, "suplementos": 0, "fitness": 0, "shopee": 0, "cupons": 0}
+        aprovados.append((_av("academia", 99 - i), oferta(f"acad {i}", 10, oid=200 + i), {}))
+    dia = {"total": 0, "suplementos": 0, "fitness": 0, "academia": 0, "shopee": 0, "cupons": 0}
     esc = escolher(aprovados, dia, CFG, 10)
     grupos = [e[0].grupo for e in esc]
-    assert grupos.count("suplementos") == 7 and grupos.count("fitness") == 3
+    assert (grupos.count("suplementos"), grupos.count("fitness"), grupos.count("academia")) == (7, 2, 1)
+    # sem nada de academia, o suplemento ocupa a vaga
+    sem_acad = [a for a in aprovados if a[0].grupo != "academia"]
+    grupos = [e[0].grupo for e in escolher(sem_acad, dict(dia), CFG, 10)]
+    assert grupos.count("suplementos") >= 7
 
     so_shopee = [(_av("suplementos", 90 - i), oferta(f"s {i}", 10, loja="shopee", oid=i), {}) for i in range(10)]
     esc = escolher(so_shopee, dict(dia), CFG, 10)
@@ -219,3 +224,12 @@ def test_termometro_caro_e_barato(capsys):
 
     tudo_caro = posts.montar_termometro({"creatina": {"dose": 0.40}, "whey": {"dose": 5.5}}, CFG)["whatsapp"]
     assert tudo_caro.startswith("🐀 *Galera, segura a carteira!*")
+
+
+def test_academia_sem_lista_de_marca():
+    ok = analise.avaliar(oferta("Luva de Academia Musculação Couro com Munhequeira", 39.9), det(39, 89), "academia", CFG)
+    assert ok.aprovada, ok.rejeitada
+    fora = analise.triagem(oferta("Fone de Ouvido Bluetooth", 99.0), "academia", CFG)
+    assert not fora.aprovada
+    caro = analise.avaliar(oferta("Kettlebell 12kg Emborrachado", 199.0), det(120, 210), "academia", CFG)
+    assert not caro.aprovada and "histórico" in caro.rejeitada

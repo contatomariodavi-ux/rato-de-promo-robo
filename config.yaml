@@ -18,10 +18,18 @@ link_padrao:
   mercado-livre: "https://meli.la/2sjdQAq"
   shopee: ""
 
-# Divisão dos posts do dia (em %).
+# Divisão dos posts do dia (em %). Foco em suplemento.
+#   fitness = roupa de treino e tênis | academia = acessórios e equipamentos
 mix:
   suplementos: 70
-  fitness: 30
+  fitness: 20
+  academia: 10
+
+# Quantas ofertas de cada grupo o robô abre pra conferir a fundo em cada rodada.
+abrir_por_grupo:
+  suplementos: 12
+  fitness: 8
+  academia: 6
 
 # No máximo essa % dos posts do dia pode ser da Shopee (resto: ML e Amazon).
 shopee_max_pct: 30
@@ -87,6 +95,8 @@ categorias:
     - calcados
     - roupa-masculina
     - roupas-mulheres
+  academia:
+    - aparelhos-acessorios-exercicio
 
 fitness:
   # O título precisa ter pelo menos uma dessas palavras.
@@ -107,6 +117,43 @@ fitness:
     - academia
     - treino
     - running
+
+academia:
+  # Acessório e equipamento de treino. Aqui não tem lista de marca:
+  # só passa com preço perto do menor já visto (ou desconto alto) e vendedor verificado.
+  palavras_obrigatorias:
+    - luva
+    - strap
+    - munhequeira
+    - cinto de musculacao
+    - cinturao
+    - joelheira
+    - cotoveleira
+    - coqueteleira
+    - squeeze
+    - garrafa
+    - halter
+    - anilha
+    - kettlebell
+    - corda de pular
+    - elastico
+    - faixa elastica
+    - mini band
+    - tapete
+    - colchonete
+    - rolo de liberacao
+    - foam roller
+    - caneleira
+    - barra fixa
+    - banco de supino
+    - step
+    - bola de pilates
+    - bicicleta ergometrica
+    - spinning
+    - esteira
+    - eliptico
+    - estacao de musculacao
+    - balanca de bioimpedancia
 
 # Marcas aceitas. Fora dessa lista, o robô não posta.
 marcas_confiaveis:

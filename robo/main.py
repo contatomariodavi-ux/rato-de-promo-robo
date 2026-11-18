@@ -42,7 +42,10 @@ def salvar_estado(estado: dict) -> None:
 
 
 def contagem_do_dia(estado: dict, hoje: str) -> dict:
-    return estado["dias"].setdefault(hoje, {"total": 0, "suplementos": 0, "fitness": 0, "shopee": 0, "cupons": 0})
+    dia = estado["dias"].setdefault(hoje, {"total": 0, "shopee": 0, "cupons": 0})
+    for k in ("suplementos", "fitness", "academia"):
+        dia.setdefault(k, 0)
+    return dia
 
 
 def limpar(estado: dict, agora: datetime, cfg: dict) -> None:
@@ -145,7 +148,7 @@ def escolher(aprovados: list, dia: dict, cfg: dict, limite: int) -> list:
     chaves: set = set()
     for _ in range(limite):
         total = dia["total"] + len(escolhidos)
-        cont = {g: dia[g] + sum(1 for e in escolhidos if e[0].grupo == g) for g in ("suplementos", "fitness")}
+        cont = {g: dia.get(g, 0) + sum(1 for e in escolhidos if e[0].grupo == g) for g in cfg["mix"]}
         shopee = dia["shopee"] + sum(1 for e in escolhidos if e[1]["storeParam"] == "shopee")
         deficit = {g: cfg["mix"][g] / 100 * (total + 1) - cont[g] for g in cont}
         pegou = None
@@ -226,7 +229,7 @@ def cacar_ofertas(pb: Promobit, estado: dict, cfg: dict, agora: datetime, detalh
         return (o.get("offerStatusName") == "TOP_OFFER", int(o.get("offerLikes") or 0),
                 float(o.get("offerDiscontPercentage") or 0))
 
-    por_grupo = {"suplementos": 12, "fitness": 8}
+    por_grupo = cfg.get("abrir_por_grupo") or {"suplementos": 12, "fitness": 8, "academia": 6}
     aprovados = []
     for grupo, n in por_grupo.items():
         lista = sorted((c for c in candidatos.values() if c[0] == grupo), key=promessa, reverse=True)[:n]
@@ -297,7 +300,7 @@ def postar_oferta(item, pb: Promobit, tg: Telegram, estado: dict, cfg: dict, seg
     estado["ultimo_post"] = agora.isoformat()
     dia = contagem_do_dia(estado, agora.date().isoformat())
     dia["total"] += 1
-    dia[av.grupo] += 1
+    dia[av.grupo] = dia.get(av.grupo, 0) + 1
     if loja == "shopee":
         dia["shopee"] += 1
     print(f"  📣 postei: {o['offerTitle'][:70]} ({loja_nome}{', link manual' if link.manual else ''})")
