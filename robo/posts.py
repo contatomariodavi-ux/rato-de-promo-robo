@@ -106,6 +106,8 @@ def montar_oferta(dados: dict) -> dict:
         rot, val = cupom
         wa.append(f"🏷️ Usa o cupom *{val}* no carrinho" if rot else f"🏷️ {val}")
     wa += ["", f"🛒 {dados['loja']}", f"👉 {link}"]
+    if dados.get("anuncio"):
+        wa.append("_Anúncio_")
     texto = "\n".join(wa)
     return {"whatsapp": texto, "telegram": _wa_para_html(texto)}
 

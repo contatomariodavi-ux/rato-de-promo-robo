@@ -227,6 +227,18 @@ ignorar_palavras:
     - bota
     - social
 
+# Marca "Anúncio" no fim de cada oferta (regra de publicidade com link de afiliado).
+marcar_anuncio: true
+
+# Cupons do teu painel de afiliado (aba Cupons). Quando a oferta não tem cupom,
+# o robô coloca o primeiro daqui que servir. "palavras" vazio = serve pra tudo da loja.
+# Exemplo:
+#   - codigo: MLSAUDE
+#     loja: mercado-livre
+#     palavras: [whey, creatina, suplemento, pre-treino]
+#     ate: 2026-11-30
+cupons_afiliado: []
+
 # ---------------------------------------------------------------------
 #  TERMÔMETRO: uma vez por dia o Rato diz se creatina e whey estão baratos
 #  ou se é pra segurar a carteira ("não compra agora que tá caro").

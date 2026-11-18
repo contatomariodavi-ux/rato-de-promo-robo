@@ -263,7 +263,8 @@ def postar_oferta(item, pb: Promobit, tg: Telegram, estado: dict, cfg: dict, seg
         "antigo": analise.preco_antigo_confiavel(o, det),
         "preco_dose": av.preco_dose,
         "dose_g": av.dose_g,
-        "cupom": o.get("offerCoupon"),
+        "cupom": o.get("offerCoupon") or cupom_afiliado(o, cfg),
+        "anuncio": cfg.get("marcar_anuncio", True),
         "destaque": av.destaque,
         "loja": loja_nome,
         "vendedor": vendedor,
@@ -304,6 +305,21 @@ def postar_oferta(item, pb: Promobit, tg: Telegram, estado: dict, cfg: dict, seg
     if loja == "shopee":
         dia["shopee"] += 1
     print(f"  📣 postei: {o['offerTitle'][:70]} ({loja_nome}{', link manual' if link.manual else ''})")
+
+
+def cupom_afiliado(oferta: dict, cfg: dict) -> str | None:
+    """Cupom do programa de afiliados (config.yaml › cupons_afiliado) que serve pra essa oferta."""
+    t = analise.normalizar(oferta.get("offerTitle"))
+    for c in cfg.get("cupons_afiliado") or []:
+        if c.get("loja", "mercado-livre") != oferta.get("storeParam") or not c.get("codigo"):
+            continue
+        ate = posts.ler_data(str(c.get("ate") or ""))
+        if ate and ate.date() < datetime.now(TZ).date():
+            continue
+        palavras = c.get("palavras") or []
+        if not palavras or any(analise.normalizar(p) in t for p in palavras):
+            return str(c["codigo"]).strip()
+    return None
 
 
 # ------------------------------------------------------------------ cupons

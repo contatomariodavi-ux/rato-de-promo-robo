@@ -233,3 +233,17 @@ def test_academia_sem_lista_de_marca():
     assert not fora.aprovada
     caro = analise.avaliar(oferta("Kettlebell 12kg Emborrachado", 199.0), det(120, 210), "academia", CFG)
     assert not caro.aprovada and "histórico" in caro.rejeitada
+
+
+def test_cupom_afiliado_e_anuncio():
+    from robo.main import cupom_afiliado
+    cfg = dict(CFG, cupons_afiliado=[
+        {"codigo": "VELHO", "loja": "mercado-livre", "ate": "2020-01-01"},
+        {"codigo": "MLSAUDE", "loja": "mercado-livre", "palavras": ["whey", "creatina"]},
+    ])
+    assert cupom_afiliado(oferta("Creatina 1kg Dux", 80), cfg) == "MLSAUDE"
+    assert cupom_afiliado(oferta("Tênis Nike", 200), cfg) is None
+    assert cupom_afiliado(oferta("Creatina 1kg Dux", 80, loja="amazon"), cfg) is None
+    t = posts.montar_oferta({"titulo": "Creatina 1kg Dux", "preco": 80, "cupom": "MLSAUDE", "loja": "Mercado Livre",
+                             "link": None, "anuncio": True})
+    assert t["whatsapp"].endswith("_Anúncio_") and t["telegram"].endswith("<i>Anúncio</i>")
