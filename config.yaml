@@ -27,8 +27,10 @@ mix:
 shopee_max_pct: 30
 
 # Quantidade de posts.
-posts_por_rodada: 2
+posts_por_rodada: 1
 posts_por_dia: 10
+# Espera pelo menos isso entre uma oferta e outra, pra espalhar no dia e não virar rajada.
+intervalo_entre_posts_min: 40
 
 # Horário em que o robô posta (horário de Brasília). Fora disso ele só confere esgotados.
 horario:

@@ -294,6 +294,7 @@ def postar_oferta(item, pb: Promobit, tg: Telegram, estado: dict, cfg: dict, seg
     }
     estado["produtos"][analise.chave_produto(loja, o["offerTitle"])] = {
         "preco": float(o["offerPrice"]), "quando": agora.isoformat()}
+    estado["ultimo_post"] = agora.isoformat()
     dia = contagem_do_dia(estado, agora.date().isoformat())
     dia["total"] += 1
     dia[av.grupo] += 1
@@ -420,12 +421,17 @@ def main() -> int:
         salvar_estado(estado)
         return 0
 
-    pb = Promobit()
+    pb = Promobit(pausa=0.5)
     conferir_esgotados(pb, tg, estado, cfg, agora, admin, grupo_tg)
 
     if cfg["horario"]["inicio"] <= agora.hour < cfg["horario"]["fim"]:
         dia = contagem_do_dia(estado, agora.date().isoformat())
         vagas = min(cfg["posts_por_rodada"], cfg["posts_por_dia"] - dia["total"])
+        ultimo = posts.ler_data(estado.get("ultimo_post"))
+        espera = timedelta(minutes=cfg.get("intervalo_entre_posts_min", 0))
+        if vagas > 0 and ultimo and agora - ultimo < espera:
+            print(f"Último post às {ultimo:%H:%M}; espero dar {espera.seconds // 60} min pro próximo.")
+            vagas = 0
         print("Caçando ofertas…")
         aprovados = cacar_ofertas(pb, estado, cfg, agora, detalhar=vagas > 0)
         if vagas > 0:
