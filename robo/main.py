@@ -56,6 +56,8 @@ def limpar(estado: dict, agora: datetime, cfg: dict) -> None:
     estado["produtos"] = {k: v for k, v in estado["produtos"].items() if not velho(v["quando"], dias_prod)}
     corte = (agora - timedelta(days=7)).date().isoformat()
     estado["dias"] = {k: v for k, v in estado["dias"].items() if k >= corte}
+    corte_t = (agora - timedelta(days=40)).date().isoformat()
+    estado["termometro"] = {k: v for k, v in (estado.get("termometro") or {}).items() if k >= corte_t}
 
 
 # ------------------------------------------------------------------ telegram: comandos
@@ -168,7 +170,21 @@ def escolher(aprovados: list, dia: dict, cfg: dict, limite: int) -> list:
     return escolhidos
 
 
-def cacar_ofertas(pb: Promobit, estado: dict, cfg: dict, agora: datetime) -> list:
+def registrar_termometro(estado: dict, oferta: dict, cfg: dict, agora: datetime) -> None:
+    """Guarda o menor preço por dose de creatina e whey visto no dia (de marca confiável)."""
+    tri = analise.triagem(oferta, "suplementos", cfg)
+    if tri.tipo not in ("creatina", "whey") or tri.preco_dose is None:
+        return
+    if not tri.aprovada and not (tri.rejeitada or "").startswith("dose cara"):
+        return
+    dia = estado.setdefault("termometro", {}).setdefault(agora.date().isoformat(), {})
+    atual = dia.get(tri.tipo)
+    if atual is None or tri.preco_dose < atual["dose"]:
+        dia[tri.tipo] = {"dose": round(tri.preco_dose, 4), "titulo": oferta["offerTitle"],
+                         "preco": float(oferta["offerPrice"]), "loja": cfg["lojas"][oferta["storeParam"]]}
+
+
+def cacar_ofertas(pb: Promobit, estado: dict, cfg: dict, agora: datetime, detalhar: bool = True) -> list:
     candidatos: dict[str, tuple] = {}
     for grupo, subcats in cfg["categorias"].items():
         for sc in subcats:
@@ -176,14 +192,18 @@ def cacar_ofertas(pb: Promobit, estado: dict, cfg: dict, agora: datetime) -> lis
             print(f"  {sc}: {len(lista)} ofertas")
             for o in lista:
                 oid = str(o.get("offerId"))
-                if oid in estado["postados"] or oid in candidatos:
-                    continue
                 if o.get("storeParam") not in cfg["lojas"]:
                     continue
-                pub = posts.ler_data(o.get("offerPublished"))
-                if not pub or agora - pub > timedelta(hours=cfg["ofertas_ate_horas"]):
-                    continue
                 if any(k in (o.get("offerStatusName") or "").upper() for k in FIM):
+                    continue
+                pub = posts.ler_data(o.get("offerPublished"))
+                if not pub:
+                    continue
+                if grupo == "suplementos" and agora - pub <= timedelta(hours=48):
+                    registrar_termometro(estado, o, cfg, agora)
+                if oid in estado["postados"] or oid in candidatos:
+                    continue
+                if agora - pub > timedelta(hours=cfg["ofertas_ate_horas"]):
                     continue
                 tri = analise.triagem(o, grupo, cfg)
                 if not tri.aprovada:
@@ -196,6 +216,9 @@ def cacar_ofertas(pb: Promobit, estado: dict, cfg: dict, agora: datetime) -> lis
                     if recente and float(o["offerPrice"]) > antes["preco"] * 0.95:
                         continue
                 candidatos[oid] = (grupo, o)
+
+    if not detalhar:
+        return []
 
     # abre a página só das mais promissoras (votos, destaque, desconto)
     def promessa(par):
@@ -342,6 +365,36 @@ def postar_cupons(pb: Promobit, tg: Telegram, estado: dict, cfg: dict, segredos:
         print(f"  🎟️ cupom: {c['couponCode']} ({loja_nome})")
 
 
+# ------------------------------------------------------------------ termômetro
+def postar_termometro(tg: Telegram, estado: dict, cfg: dict, agora: datetime, admin, grupo_tg) -> None:
+    """Uma vez por dia: diz se creatina e whey estão baratos ou se é pra segurar a carteira."""
+    tcfg = cfg.get("termometro") or {}
+    hoje = agora.date().isoformat()
+    if not tcfg.get("ligado", True) or agora.hour < int(tcfg.get("hora", 12)):
+        return
+    if estado.get("termometro_postado") == hoje:
+        return
+    dados = estado.get("termometro") or {}
+    ontem = (agora - timedelta(days=1)).date().isoformat()
+    linhas = {}
+    for tipo in ("creatina", "whey"):
+        r = (dados.get(hoje) or {}).get(tipo) or (dados.get(ontem) or {}).get(tipo)
+        if r:
+            linhas[tipo] = r
+    if not linhas:
+        print("Termômetro: sem preço de creatina nem de whey pra comparar hoje.")
+        return
+    textos = posts.montar_termometro(linhas, cfg)
+    if grupo_tg:
+        tg.mensagem(grupo_tg, textos["telegram"], previa=False)
+    if admin:
+        tg.mensagem(admin, textos["telegram"],
+                    Telegram.botoes([("Mandar no WhatsApp", posts.link_whatsapp(textos["whatsapp"]))]),
+                    previa=False)
+    estado["termometro_postado"] = hoje
+    print("  🌡️ termômetro postado")
+
+
 # ------------------------------------------------------------------ principal
 def main() -> int:
     cfg = yaml.safe_load((RAIZ / "config.yaml").read_text(encoding="utf-8"))
@@ -373,9 +426,9 @@ def main() -> int:
     if cfg["horario"]["inicio"] <= agora.hour < cfg["horario"]["fim"]:
         dia = contagem_do_dia(estado, agora.date().isoformat())
         vagas = min(cfg["posts_por_rodada"], cfg["posts_por_dia"] - dia["total"])
+        print("Caçando ofertas…")
+        aprovados = cacar_ofertas(pb, estado, cfg, agora, detalhar=vagas > 0)
         if vagas > 0:
-            print("Caçando ofertas…")
-            aprovados = cacar_ofertas(pb, estado, cfg, agora)
             escolhidos = escolher(aprovados, dia, cfg, vagas)
             print(f"{len(aprovados)} aprovadas, {len(escolhidos)} escolhidas")
             for item in escolhidos:
@@ -384,6 +437,7 @@ def main() -> int:
             print("Limite de posts do dia atingido.")
         print("Caçando cupons…")
         postar_cupons(pb, tg, estado, cfg, segredos, agora, admin, grupo_tg)
+        postar_termometro(tg, estado, cfg, agora, admin, grupo_tg)
     else:
         print("Fora do horário de postar.")
 

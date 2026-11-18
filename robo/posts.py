@@ -160,6 +160,57 @@ def montar_esgotado(titulo: str, cupom: str | None) -> dict:
     return {"whatsapp": texto, "telegram": _wa_para_html(texto)}
 
 
+_PRODUTO = {
+    "creatina": ("Creatina", "a", "💪"),
+    "whey": ("Whey", "o", "🥤"),
+}
+
+
+def montar_termometro(linhas: dict, cfg: dict) -> dict:
+    """linhas: {tipo: {dose, titulo, preco, loja}} com o menor preço por dose do dia."""
+    blocos, status = [], []
+    for tipo, r in linhas.items():
+        nome, g, emoji = _PRODUTO[tipo]
+        teto = float(cfg["preco_max_por_dose"][tipo])
+        dose = float(r["dose"])
+        if tipo == "creatina":
+            extra = f" ({brl(dose * 1000 / cfg['dose_gramas'][tipo])} o quilo)"
+        else:
+            extra = f" ({brl(dose * 900 / cfg['dose_gramas'][tipo])} o pote de 900g)"
+        if dose <= teto * 0.85:
+            status.append("verde")
+            cab = f"🟢 *Tá barat{g}, pode comprar!*"
+            fim = None
+        elif dose <= teto:
+            status.append("amarelo")
+            cab = "🟡 *Preço ok*, compra se tiver precisando"
+            fim = None
+        else:
+            status.append("vermelho")
+            cab = f"🔴 *Tá car{g}, não compra agora!*"
+            fim = f"Bom mesmo é até {brl(teto)} a dose."
+        bloco = [f"{emoji} *{nome}*: {cab}",
+                 f"O melhor preço que eu achei foi {brl(dose)} a dose{extra}."]
+        if fim:
+            bloco.append(fim)
+        blocos.append("\n".join(bloco))
+
+    if all(s == "vermelho" for s in status):
+        topo = "🐀 *Galera, segura a carteira!*"
+        rodape = "Quando baixar eu aviso aqui. Rato esperto não paga caro 🐀"
+    elif all(s == "verde" for s in status):
+        topo = "🐀 *Hora de encher o pote!*"
+        rodape = "As melhores ofertas eu posto aqui ao longo do dia 🐀"
+    elif "vermelho" in status:
+        topo = "🐀 *Termômetro do Rato*"
+        rodape = "O que tá caro eu aviso aqui quando baixar. Rato esperto não paga caro 🐀"
+    else:
+        topo = "🐀 *Termômetro do Rato*"
+        rodape = "As melhores ofertas eu posto aqui ao longo do dia 🐀"
+    texto = "\n\n".join([topo] + blocos + [rodape])
+    return {"whatsapp": texto, "telegram": _wa_para_html(texto)}
+
+
 def link_whatsapp(texto: str, limite: int = 2000) -> str:
     """Link que abre o WhatsApp com o texto já preenchido."""
     url = "https://wa.me/?text=" + quote(texto, safe="")

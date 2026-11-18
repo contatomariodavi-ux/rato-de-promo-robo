@@ -194,3 +194,28 @@ def test_titulo_arrumado():
     t2 = posts.montar_oferta({"titulo": "Whey Protein Gold Standard 100% 2,27kg - Optimum Nutrition", "preco": 300,
                               "loja": "Amazon", "link": "x"})
     assert "*Whey Protein Gold Standard 100% 2,27kg - Optimum Nutrition*" in t2["whatsapp"]
+
+
+def test_termometro_caro_e_barato(capsys):
+    from datetime import datetime
+    from robo.main import TZ, postar_termometro, registrar_termometro
+    from robo.telegram import Telegram
+
+    agora = datetime(2026, 11, 18, 12, 30, tzinfo=TZ)
+    estado = {}
+    registrar_termometro(estado, oferta("Creatina Monohidratada 1kg Max Titanium", 129.9, loja="amazon"), CFG, agora)
+    registrar_termometro(estado, oferta("Creatina Monohidratada 1kg Growth", 119.9, loja="amazon"), CFG, agora)
+    registrar_termometro(estado, oferta("Whey Protein Concentrado 900g Dux", 99.0, loja="mercado-livre"), CFG, agora)
+    registrar_termometro(estado, oferta("Creatina Marca Desconhecida 1kg", 40.0, loja="amazon"), CFG, agora)
+    dia = estado["termometro"]["2026-11-18"]
+    assert dia["creatina"]["dose"] == pytest.approx(119.9 / (1000 / 3), abs=1e-3)  # a desconhecida não conta
+    postar_termometro(Telegram(None, teste=True), estado, CFG, agora, "ADMIN", "GRUPO")
+    saida = capsys.readouterr().out
+    assert "Termômetro do Rato" in saida and "Tá cara, não compra agora!" in saida and "R$ 119,90 o quilo" in saida
+    assert "Tá barato, pode comprar!" in saida
+    assert estado["termometro_postado"] == "2026-11-18"
+    postar_termometro(Telegram(None, teste=True), estado, CFG, agora, "ADMIN", "GRUPO")  # não repete no dia
+    assert "Termômetro do Rato" not in capsys.readouterr().out
+
+    tudo_caro = posts.montar_termometro({"creatina": {"dose": 0.40}, "whey": {"dose": 5.5}}, CFG)["whatsapp"]
+    assert tudo_caro.startswith("🐀 *Galera, segura a carteira!*")

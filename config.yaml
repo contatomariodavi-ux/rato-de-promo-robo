@@ -179,6 +179,14 @@ ignorar_palavras:
     - social
 
 # ---------------------------------------------------------------------
+#  TERMÔMETRO: uma vez por dia o Rato diz se creatina e whey estão baratos
+#  ou se é pra segurar a carteira ("não compra agora que tá caro").
+# ---------------------------------------------------------------------
+termometro:
+  ligado: true
+  hora: 12
+
+# ---------------------------------------------------------------------
 #  CUPONS
 # ---------------------------------------------------------------------
 cupons:
