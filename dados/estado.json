@@ -41,7 +41,7 @@
    "foto": false,
    "texto_tg": "🐀 <b>Farejei essa e corri pra cá!</b>\n\n<b>Creatine Turbo 500g Refil Black Skull Usa Sem Sabor</b>\nPor <b>R$ 28,10</b>\n💪 R$ 0,17 a dose\n📉 Dose baratinha, do jeito que rato gosta\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-21T06:31:59.932818-03:00"
+   "checado": "2026-11-21T07:24:05.313767-03:00"
   },
   "3230797": {
    "titulo": "Growth Supplements - Creatina Monohidratada 250g - Growth Supplements - Sem sabor em pó",
@@ -70,7 +70,7 @@
    "foto": false,
    "texto_tg": "🐀 <b>Saí do buraco só pra te mostrar essa!</b>\n\n<b>Creatina Soldiers Nutrition Em Pó Sem Sabor 600g</b>\nPor <b>R$ 39,00</b>\n💪 R$ 0,20 a dose\n📉 Menor preço que eu já farejei\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-21T06:31:59.932818-03:00"
+   "checado": "2026-11-21T07:24:05.313767-03:00"
   },
   "3235238": {
    "titulo": "Whey Protein Em Pó Integralmedica Nutriwhey, Baunilha, 1,2kg",
@@ -99,7 +99,7 @@
    "foto": false,
    "texto_tg": "🐀 <b>Roí o preço dessa até o osso!</b>\n\n<b>Creatina Monohidratada 500g 100% Pura - Soldiers Nutrition</b>\nPor <b>R$ 39,90</b>\n💪 R$ 0,24 a dose\n📉 Dose baratinha, do jeito que rato gosta\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-21T06:31:59.932818-03:00"
+   "checado": "2026-11-21T07:24:05.313767-03:00"
   }
  },
  "cupons": {
@@ -231,6 +231,14 @@
    "suplementos": 2,
    "fitness": 0,
    "academia": 0
+  },
+  "2026-11-21": {
+   "total": 0,
+   "shopee": 0,
+   "cupons": 0,
+   "suplementos": 0,
+   "fitness": 0,
+   "academia": 0
   }
  },
  "telegram_offset": 219991967,
@@ -289,6 +297,20 @@
     "titulo": "Whey Protein Em Pó Integralmedica Nutriwhey, Baunilha, 1,2kg",
     "preco": 55.0,
     "loja": "Amazon"
+   }
+  },
+  "2026-11-21": {
+   "creatina": {
+    "dose": 0.1724,
+    "titulo": "Creatina 1kg Suplemento Monohidratada - Soldiers Nutrition",
+    "preco": 57.45,
+    "loja": "Amazon"
+   },
+   "whey": {
+    "dose": 5.164,
+    "titulo": "Whey Protein Concentrado 100% 900g Refil Dark Lab Sabor Coco",
+    "preco": 154.92,
+    "loja": "Mercado Livre"
    }
   }
  },
