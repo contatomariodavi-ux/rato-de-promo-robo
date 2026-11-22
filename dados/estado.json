@@ -70,7 +70,7 @@
    "foto": false,
    "texto_tg": "🐀 <b>Saí do buraco só pra te mostrar essa!</b>\n\n<b>Creatina Soldiers Nutrition Em Pó Sem Sabor 600g</b>\nPor <b>R$ 39,00</b>\n💪 R$ 0,20 a dose\n📉 Menor preço que eu já farejei\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-22T10:43:57.048925-03:00"
+   "checado": "2026-11-22T11:33:01.629126-03:00"
   },
   "3235238": {
    "titulo": "Whey Protein Em Pó Integralmedica Nutriwhey, Baunilha, 1,2kg",
@@ -99,7 +99,7 @@
    "foto": false,
    "texto_tg": "🐀 <b>Roí o preço dessa até o osso!</b>\n\n<b>Creatina Monohidratada 500g 100% Pura - Soldiers Nutrition</b>\nPor <b>R$ 39,90</b>\n💪 R$ 0,24 a dose\n📉 Dose baratinha, do jeito que rato gosta\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-22T10:43:57.048925-03:00"
+   "checado": "2026-11-22T11:33:01.629126-03:00"
   },
   "3240043": {
    "titulo": "Tênis Nike Reax 8 Tr Feminino",
@@ -112,6 +112,20 @@
    "msg_grupo": null,
    "foto": false,
    "texto_tg": "🐀 <b>Saí do buraco só pra te mostrar essa!</b>\n\n<b>Tênis Nike Reax 8 Tr Feminino</b>\nPor <b>R$ 379,00</b>\n📉 Menor preço que eu já farejei\n🏷️ Usa o cupom <b>OFICIAIS2211</b> no carrinho\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
+   "manual": true,
+   "checado": "2026-11-22T11:33:01.629126-03:00"
+  },
+  "3240118": {
+   "titulo": "Creatina Soldiers Nutrition Em Pó Sem Sabor 2x 600g",
+   "slug": "creatina-soldiers-nutrition-em-po-sem-sabor-2x-600g-3240118",
+   "loja": "mercado-livre",
+   "grupo": "suplementos",
+   "preco": 78.0,
+   "cupom": null,
+   "quando": "2026-11-22T11:33:01.629126-03:00",
+   "msg_grupo": null,
+   "foto": false,
+   "texto_tg": "🐀 <b>Roí o preço dessa até o osso!</b>\n\n<b>Creatina Soldiers Nutrition Em Pó Sem Sabor 2x 600g</b>\nPor <b>R$ 78,00</b>\n💪 R$ 0,20 a dose\n📉 Dose baratinha, do jeito que rato gosta\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true
   }
  },
@@ -215,6 +229,10 @@
   "mercado-livre:tenis nike reax 8 tr feminino": {
    "preco": 379.0,
    "quando": "2026-11-22T10:43:57.048925-03:00"
+  },
+  "mercado-livre:creatina soldiers nutrition em po sem sabor 2x 600g": {
+   "preco": 78.0,
+   "quando": "2026-11-22T11:33:01.629126-03:00"
   }
  },
  "dias": {
@@ -258,10 +276,10 @@
    "academia": 0
   },
   "2026-11-22": {
-   "total": 1,
+   "total": 2,
    "shopee": 0,
    "cupons": 0,
-   "suplementos": 0,
+   "suplementos": 1,
    "fitness": 1,
    "academia": 0
   }
@@ -354,5 +372,5 @@
   }
  },
  "termometro_postado": "2026-11-21",
- "ultimo_post": "2026-11-22T10:43:57.048925-03:00"
+ "ultimo_post": "2026-11-22T11:33:01.629126-03:00"
 }
