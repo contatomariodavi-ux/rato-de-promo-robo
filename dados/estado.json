@@ -99,7 +99,7 @@
    "foto": false,
    "texto_tg": "🐀 <b>Roí o preço dessa até o osso!</b>\n\n<b>Creatina Monohidratada 500g 100% Pura - Soldiers Nutrition</b>\nPor <b>R$ 39,90</b>\n💪 R$ 0,24 a dose\n📉 Dose baratinha, do jeito que rato gosta\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-23T05:55:47.805866-03:00"
+   "checado": "2026-11-23T07:06:22.013053-03:00"
   },
   "3240043": {
    "titulo": "Tênis Nike Reax 8 Tr Feminino",
@@ -113,7 +113,7 @@
    "foto": false,
    "texto_tg": "🐀 <b>Saí do buraco só pra te mostrar essa!</b>\n\n<b>Tênis Nike Reax 8 Tr Feminino</b>\nPor <b>R$ 379,00</b>\n📉 Menor preço que eu já farejei\n🏷️ Usa o cupom <b>OFICIAIS2211</b> no carrinho\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-23T05:55:47.805866-03:00"
+   "checado": "2026-11-23T07:06:22.013053-03:00"
   },
   "3240118": {
    "titulo": "Creatina Soldiers Nutrition Em Pó Sem Sabor 2x 600g",
@@ -127,7 +127,20 @@
    "foto": false,
    "texto_tg": "🐀 <b>Roí o preço dessa até o osso!</b>\n\n<b>Creatina Soldiers Nutrition Em Pó Sem Sabor 2x 600g</b>\nPor <b>R$ 78,00</b>\n💪 R$ 0,20 a dose\n📉 Dose baratinha, do jeito que rato gosta\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-23T05:55:47.805866-03:00"
+   "checado": "2026-11-23T07:06:22.013053-03:00"
+  },
+  "3241630": {
+   "titulo": "Whey Protein Core Soldiers Nutrition 900g Morango",
+   "slug": "whey-protein-core-soldiers-nutrition-900g-morango-3241630",
+   "loja": "amazon",
+   "grupo": "suplementos",
+   "preco": 66.95,
+   "cupom": null,
+   "quando": "2026-11-23T07:06:22.013053-03:00",
+   "msg_grupo": 19,
+   "foto": true,
+   "texto_tg": "🐀 <b>Cheiro de oferta boa no ar!</b>\n\n<b>Whey Protein Core Soldiers Nutrition 900g Morango</b>\nPor <b>R$ 66,95</b>\n💪 R$ 2,23 a dose\n📉 Dose baratinha, do jeito que rato gosta\n\n🛒 Amazon\n👉 https://www.amazon.com.br/dp/B0H5GBF4V8?tag=ratodepromoof-20\n<i>Anúncio</i>",
+   "manual": false
   }
  },
  "cupons": {
@@ -234,6 +247,10 @@
   "mercado-livre:creatina soldiers nutrition em po sem sabor 2x 600g": {
    "preco": 78.0,
    "quando": "2026-11-22T11:33:01.629126-03:00"
+  },
+  "amazon:whey protein core soldiers nutrition 900g morango": {
+   "preco": 66.95,
+   "quando": "2026-11-23T07:06:22.013053-03:00"
   }
  },
  "dias": {
@@ -282,6 +299,14 @@
    "cupons": 0,
    "suplementos": 1,
    "fitness": 1,
+   "academia": 0
+  },
+  "2026-11-23": {
+   "total": 1,
+   "shopee": 0,
+   "cupons": 0,
+   "suplementos": 1,
+   "fitness": 0,
    "academia": 0
   }
  },
@@ -370,8 +395,22 @@
     "preco": 79.2,
     "loja": "Mercado Livre"
    }
+  },
+  "2026-11-23": {
+   "creatina": {
+    "dose": 0.1776,
+    "titulo": "Creatina Monohidratada 1kg 100% Pura - Dark Lab",
+    "preco": 59.19,
+    "loja": "Mercado Livre"
+   },
+   "whey": {
+    "dose": 2.2317,
+    "titulo": "Whey Protein Core Soldiers Nutrition 900g Morango",
+    "preco": 66.95,
+    "loja": "Amazon"
+   }
   }
  },
  "termometro_postado": "2026-11-22",
- "ultimo_post": "2026-11-22T11:33:01.629126-03:00"
+ "ultimo_post": "2026-11-23T07:06:22.013053-03:00"
 }
