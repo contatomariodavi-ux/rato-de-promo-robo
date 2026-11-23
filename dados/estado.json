@@ -128,7 +128,7 @@
    "foto": false,
    "texto_tg": "🐀 <b>Roí o preço dessa até o osso!</b>\n\n<b>Creatina Soldiers Nutrition Em Pó Sem Sabor 2x 600g</b>\nPor <b>R$ 78,00</b>\n💪 R$ 0,20 a dose\n📉 Dose baratinha, do jeito que rato gosta\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-23T19:34:17.685107-03:00"
+   "checado": "2026-11-23T20:34:16.997433-03:00"
   },
   "3241630": {
    "titulo": "Whey Protein Core Soldiers Nutrition 900g Morango",
@@ -172,7 +172,20 @@
    "foto": false,
    "texto_tg": "🐀 <b>Olha o que eu achei escondido no Mercado Livre!</b>\n\n<b>Whey Double Protein 900g Sabor Morango - FTW</b>\nPor <b>R$ 84,39</b>\n💪 R$ 2,81 a dose\n📉 Dose baratinha, do jeito que rato gosta\n🏷️ Usa o cupom <b>OFERTAPARAVOCE</b> no carrinho\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-23T19:34:17.685107-03:00"
+   "checado": "2026-11-23T20:34:16.997433-03:00"
+  },
+  "3245340": {
+   "titulo": "Creatina Integralmédica Hardcore Morango 350G",
+   "slug": "creatina-integralmedica-hardcore-morango-350g-3245340",
+   "loja": "mercado-livre",
+   "grupo": "suplementos",
+   "preco": 34.0,
+   "cupom": null,
+   "quando": "2026-11-23T20:34:16.997433-03:00",
+   "msg_grupo": null,
+   "foto": false,
+   "texto_tg": "🐀 <b>Farejei essa e corri pra cá!</b>\n\n<b>Creatina Integralmédica Hardcore Morango 350G</b>\nPor <b>R$ 34,00</b>\n💪 R$ 0,29 a dose\n📉 Menor preço que eu já farejei\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
+   "manual": true
   }
  },
  "cupons": {
@@ -244,10 +257,6 @@
   }
  },
  "produtos": {
-  "amazon:creatina monohidratada soldiers nutrition 1200g": {
-   "preco": 86.35,
-   "quando": "2026-11-17T20:04:28.770987-03:00"
-  },
   "mercado-livre:whey isolate protein fuse 900g dark lab": {
    "preco": 78.9,
    "quando": "2026-11-18T07:56:00.828997-03:00"
@@ -291,6 +300,10 @@
   "mercado-livre:whey double protein 900g sabor morango  ftw": {
    "preco": 84.39,
    "quando": "2026-11-23T14:39:43.989187-03:00"
+  },
+  "mercado-livre:creatina integralmedica hardcore morango 350g": {
+   "preco": 34.0,
+   "quando": "2026-11-23T20:34:16.997433-03:00"
   }
  },
  "dias": {
@@ -342,10 +355,10 @@
    "academia": 0
   },
   "2026-11-23": {
-   "total": 3,
+   "total": 4,
    "shopee": 0,
    "cupons": 0,
-   "suplementos": 2,
+   "suplementos": 3,
    "fitness": 1,
    "academia": 0
   }
@@ -452,5 +465,5 @@
   }
  },
  "termometro_postado": "2026-11-23",
- "ultimo_post": "2026-11-23T14:39:43.989187-03:00"
+ "ultimo_post": "2026-11-23T20:34:16.997433-03:00"
 }
