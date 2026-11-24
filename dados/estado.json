@@ -128,7 +128,7 @@
    "foto": false,
    "texto_tg": "🐀 <b>Roí o preço dessa até o osso!</b>\n\n<b>Creatina Soldiers Nutrition Em Pó Sem Sabor 2x 600g</b>\nPor <b>R$ 78,00</b>\n💪 R$ 0,20 a dose\n📉 Dose baratinha, do jeito que rato gosta\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-24T06:44:03.650763-03:00"
+   "checado": "2026-11-24T07:38:40.653371-03:00"
   },
   "3241630": {
    "titulo": "Whey Protein Core Soldiers Nutrition 900g Morango",
@@ -172,7 +172,7 @@
    "foto": false,
    "texto_tg": "🐀 <b>Olha o que eu achei escondido no Mercado Livre!</b>\n\n<b>Whey Double Protein 900g Sabor Morango - FTW</b>\nPor <b>R$ 84,39</b>\n💪 R$ 2,81 a dose\n📉 Dose baratinha, do jeito que rato gosta\n🏷️ Usa o cupom <b>OFERTAPARAVOCE</b> no carrinho\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-24T06:44:03.650763-03:00"
+   "checado": "2026-11-24T07:38:40.653371-03:00"
   },
   "3245340": {
    "titulo": "Creatina Integralmédica Hardcore Morango 350G",
@@ -186,7 +186,7 @@
    "foto": false,
    "texto_tg": "🐀 <b>Farejei essa e corri pra cá!</b>\n\n<b>Creatina Integralmédica Hardcore Morango 350G</b>\nPor <b>R$ 34,00</b>\n💪 R$ 0,29 a dose\n📉 Menor preço que eu já farejei\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-24T06:44:03.650763-03:00"
+   "checado": "2026-11-24T07:38:40.653371-03:00"
   },
   "3245418": {
    "titulo": "Creatina Monohidratada Dux Human Health Em Pó Sem Sabor X 600g",
@@ -200,7 +200,20 @@
    "foto": false,
    "texto_tg": "🐀 <b>Saí do buraco só pra te mostrar essa!</b>\n\n<b>Creatina Monohidratada Dux Human Health Em Pó Sem Sabor X 600g</b>\nPor <b>R$ 73,00</b>\n💪 R$ 0,36 a dose\n📉 Menor preço que eu já farejei\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-24T06:44:03.650763-03:00"
+   "checado": "2026-11-24T07:38:40.653371-03:00"
+  },
+  "3246228": {
+   "titulo": "Whey Protein Concentrado Dux 900g Baunilha 20g de Proteína",
+   "slug": "whey-protein-concentrado-dux-900g-baunilha-20g-de-proteina-3246228",
+   "loja": "mercado-livre",
+   "grupo": "suplementos",
+   "preco": 147.68,
+   "cupom": "FULL2411",
+   "quando": "2026-11-24T07:38:40.653371-03:00",
+   "msg_grupo": null,
+   "foto": false,
+   "texto_tg": "🐀 <b>Olha o que eu achei escondido no Mercado Livre!</b>\n\n<b>Whey Protein Concentrado Dux 900g Baunilha 20g de Proteína</b>\nPor <b>R$ 147,68</b>\n💪 R$ 4,92 a dose\n📉 Menor preço que eu já farejei\n🏷️ Usa o cupom <b>FULL2411</b> no carrinho\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
+   "manual": true
   }
  },
  "cupons": {
@@ -323,6 +336,10 @@
   "mercado-livre:creatina monohidratada dux human health em po sem sabor x 600g": {
    "preco": 73.0,
    "quando": "2026-11-23T21:33:29.281040-03:00"
+  },
+  "mercado-livre:whey protein concentrado dux 900g baunilha 20g de proteina": {
+   "preco": 147.68,
+   "quando": "2026-11-24T07:38:40.653371-03:00"
   }
  },
  "dias": {
@@ -379,6 +396,14 @@
    "cupons": 0,
    "suplementos": 4,
    "fitness": 1,
+   "academia": 0
+  },
+  "2026-11-24": {
+   "total": 1,
+   "shopee": 0,
+   "cupons": 0,
+   "suplementos": 1,
+   "fitness": 0,
    "academia": 0
   }
  },
@@ -481,8 +506,22 @@
     "preco": 66.95,
     "loja": "Amazon"
    }
+  },
+  "2026-11-24": {
+   "creatina": {
+    "dose": 0.1776,
+    "titulo": "Creatina Monohidratada 1kg 100% Pura - Dark Lab",
+    "preco": 59.19,
+    "loja": "Mercado Livre"
+   },
+   "whey": {
+    "dose": 2.813,
+    "titulo": "Whey Double Protein 900g Sabor Morango - FTW",
+    "preco": 84.39,
+    "loja": "Mercado Livre"
+   }
   }
  },
  "termometro_postado": "2026-11-23",
- "ultimo_post": "2026-11-23T21:33:29.281040-03:00"
+ "ultimo_post": "2026-11-24T07:38:40.653371-03:00"
 }
