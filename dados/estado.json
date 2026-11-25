@@ -128,7 +128,7 @@
    "foto": false,
    "texto_tg": "🐀 <b>Roí o preço dessa até o osso!</b>\n\n<b>Creatina Soldiers Nutrition Em Pó Sem Sabor 2x 600g</b>\nPor <b>R$ 78,00</b>\n💪 R$ 0,20 a dose\n📉 Dose baratinha, do jeito que rato gosta\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-24T20:20:43.803733-03:00"
+   "checado": "2026-11-24T21:14:59.172016-03:00"
   },
   "3241630": {
    "titulo": "Whey Protein Core Soldiers Nutrition 900g Morango",
@@ -187,7 +187,7 @@
    "foto": false,
    "texto_tg": "🐀 <b>Farejei essa e corri pra cá!</b>\n\n<b>Creatina Integralmédica Hardcore Morango 350G</b>\nPor <b>R$ 34,00</b>\n💪 R$ 0,29 a dose\n📉 Menor preço que eu já farejei\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-24T20:20:43.803733-03:00"
+   "checado": "2026-11-24T21:14:59.172016-03:00"
   },
   "3245418": {
    "titulo": "Creatina Monohidratada Dux Human Health Em Pó Sem Sabor X 600g",
@@ -201,7 +201,7 @@
    "foto": false,
    "texto_tg": "🐀 <b>Saí do buraco só pra te mostrar essa!</b>\n\n<b>Creatina Monohidratada Dux Human Health Em Pó Sem Sabor X 600g</b>\nPor <b>R$ 73,00</b>\n💪 R$ 0,36 a dose\n📉 Menor preço que eu já farejei\n🏷️ Testa o cupom <b>ECONOMIZE</b> no carrinho, que pode baixar mais\n\n🛒 Mercado Livre\n👉 COLE_SEU_LINK_AQUI\n<i>Anúncio</i>",
    "manual": true,
-   "checado": "2026-11-24T20:20:43.803733-03:00"
+   "checado": "2026-11-24T21:14:59.172016-03:00"
   },
   "3246228": {
    "titulo": "Whey Protein Concentrado Dux 900g Baunilha 20g de Proteína",
@@ -217,6 +217,19 @@
    "manual": true,
    "checado": "2026-11-24T11:02:34.019806-03:00",
    "esgotado": true
+  },
+  "3250305": {
+   "titulo": "Growth Supplements - Basic Whey 1kg Growth Supplements - Baunilha",
+   "slug": "growth-supplements-basic-whey-1kg-growth-supplements-baunilha-3250305",
+   "loja": "amazon",
+   "grupo": "suplementos",
+   "preco": 52.0,
+   "cupom": "BLACKSONHO",
+   "quando": "2026-11-24T21:14:59.172016-03:00",
+   "msg_grupo": 23,
+   "foto": true,
+   "texto_tg": "🐀 <b>Saí do buraco só pra te mostrar essa!</b>\n\n<b>Growth Supplements - Basic Whey 1kg Growth Supplements - Baunilha</b>\nPor <b>R$ 52,00</b>\n💪 R$ 1,56 a dose\n📉 Dose baratinha, do jeito que rato gosta\n🏷️ Usa o cupom <b>BLACKSONHO</b> no carrinho\n\n🛒 Amazon\n👉 https://www.amazon.com.br/dp/B0HDFYG15C?tag=ratodepromoof-20\n<i>Anúncio</i>",
+   "manual": false
   }
  },
  "cupons": {
@@ -335,6 +348,10 @@
   "mercado-livre:whey protein concentrado dux 900g baunilha 20g de proteina": {
    "preco": 147.68,
    "quando": "2026-11-24T07:38:40.653371-03:00"
+  },
+  "amazon:growth supplements  basic whey 1kg growth supplements  baunilha": {
+   "preco": 52.0,
+   "quando": "2026-11-24T21:14:59.172016-03:00"
   }
  },
  "dias": {
@@ -394,10 +411,10 @@
    "academia": 0
   },
   "2026-11-24": {
-   "total": 1,
+   "total": 2,
    "shopee": 0,
    "cupons": 0,
-   "suplementos": 1,
+   "suplementos": 2,
    "fitness": 0,
    "academia": 0
   }
@@ -510,13 +527,13 @@
     "loja": "Mercado Livre"
    },
    "whey": {
-    "dose": 2.813,
-    "titulo": "Whey Double Protein 900g Sabor Morango - FTW",
-    "preco": 84.39,
-    "loja": "Mercado Livre"
+    "dose": 1.56,
+    "titulo": "Growth Supplements - Basic Whey 1kg Growth Supplements - Baunilha",
+    "preco": 52.0,
+    "loja": "Amazon"
    }
   }
  },
  "termometro_postado": "2026-11-24",
- "ultimo_post": "2026-11-24T07:38:40.653371-03:00"
+ "ultimo_post": "2026-11-24T21:14:59.172016-03:00"
 }
